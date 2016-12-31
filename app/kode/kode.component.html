@@ -1,0 +1,30 @@
+
+
+    <h2 align="center">Cek Kode Booking</h2>
+    <table border=1 width=500 align = "center">
+    <tr><td><h5 align="center" style="color:red">Silahkan masukkan kode pembayaran untuk menampilkan kode booking</h5></td></tr>
+      <form name="form" (ngSubmit)="f.form.valid && cekKodeBooking()" #f="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !kodePembayaran.valid }">
+              <tr>
+                <td width="150"></td>
+                <td><label  for ="kodePembayaran">Kode Pembayaran </label></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input type="text" class="form-control" name="kodePembayaran" [(ngModel)]="model.kodePembayaran" #kodePembayaran="ngModel" required /></td>
+              <td></td>
+              </tr>
+
+
+</div>
+
+          <div align="center" class="form-group">
+
+              <button [disabled]="loading" class="btn btn-primary" style = "background-color:black">Cek</button>
+
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+          </div>
+      </form>
+    </table>

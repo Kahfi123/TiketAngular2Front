@@ -1,0 +1,18 @@
+<h2 align="center">Daftar Tiket Kereta Api</h2>
+<table class="trains" align = "center" width = "1000">
+  <tr width>
+    <th>Kereta Api</th>
+    <th>Berangkat</th>
+    <th>Datang</th>
+    <th>Harga</th>
+    <th>Ketersediaan</th>
+  </tr>
+  <tr *ngFor="let train of trains">
+    <td>{{train.name}} ({{train.id}})</td>
+    <td>{{train.departure_on | date: 'hh:mm:ss'}}</td>
+    <td>{{train.arrive_on | date: 'hh:mm:ss'}}</td>
+    <td>Rp {{train.price}}</td>
+    <td *ngIf="train.slot>=jumlahPenumpang"><button class = "ph-button ph-btn-blue" (click) = "gotoBooking(train)">Pesan</button></td>
+    <td *ngIf="train.slot<jumlahPenumpang">Habis</td>
+  </tr>
+</table>

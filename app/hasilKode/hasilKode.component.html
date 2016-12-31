@@ -1,0 +1,39 @@
+<h4 style="color:red">Silahkan pakai Kode Booking untuk mencetak tiketnya di stasiun</h4>
+<div id="clockdiv">
+
+  <table border = 1>
+    <tr>
+      <td colspan = 5><h4>Info Tiket</h4></td>
+    </tr>
+    <tr>
+      <th>Kode Booking</th>
+      <th>Kode Pembayaran</th>
+      <th>Nama Pemesanan</th>
+    </tr>
+    <tr>
+      <td>{{currentUser.kodeBooking}}</td>
+      <td>{{currentUser.kodePembayaran}}</td>
+      <td>{{currentUser.namaPemesan}}</td>
+    </tr><tr>
+      <tr>
+        <td colspan = 5><h4>Info Penumpang</h4></td>
+      </tr>
+      <tr>
+        <th>No</th>
+        <th>Nama Penumpang</th>
+        <th>Nomor Identitas</th>
+
+
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>{{currentUser.namaPenumpang}}</td>
+        <td>{{currentUser.idPenumpang}}</td>
+      </tr>
+
+
+  </table>
+
+
+
+  <p align="right"><a [routerLink]="['/register']" class="btn btn-primary" style="background-color:#262626">Kembali</a>

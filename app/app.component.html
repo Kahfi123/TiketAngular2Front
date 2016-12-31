@@ -1,0 +1,94 @@
+<!-- header -->
+<nav class="navbar  navbar-default" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" width=200 height = "70" alt="Kereta Api"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/beranda" routerLinkActive="active">Beranda</a></li>
+        <li><a routerLink="/reservation" routerLinkActive="active">Reservasi</a></li>
+        <li><a href="#">Tentang</a></li>
+        <li><a href="#">Paket</a></li>
+        <li><a href="#">Kereta</a></li>
+        <li><a [routerLink]="['/cekKodeBooking']" >Cek Kode Booking</a></li>
+      </ul>
+    </div><!-- Wnavbar-collapse -->
+  </div><!-- container-fluid -->
+</nav>
+<!-- header -->
+<!-- main app container -->
+
+
+            <alert></alert>
+            <router-outlet></router-outlet>
+<br>
+<br>
+<br>
+<br>
+            <footer class="spacer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <h4>Pleton C1 Pengembangan Web</h4>
+                                <p>Kami adalah mahasiswa Politeknik Negeri Bandung yang ditugaskan untuk membuat sebuah website berbasis angular 2 dan python. Kami membuat sebuah website aplikasi tentang pemesanan tiket kereta api secara online.</p>
+                            </div>
+
+                             <div class="col-sm-3">
+                                <h4>Quick Links</h4>
+                                <ul class="list-unstyled">
+                                  <li><a routerLink="/beranda" routerLinkActive="active">Beranda</a></li>
+                                  <li><a routerLink="/reservation" routerLinkActive="active">Reservasi</a></li>
+                                  <li><a href="#">Tentang</a></li>
+                                  <li><a href="#">Paket</a></li>
+                                  <li><a href="#">Kereta</a></li>
+                                  <li><a [routerLink]="['/cekKodeBooking']" >Cek Kode Booking</a></li>
+                                </ul>
+                            </div>
+                             <div class="col-sm-4 subscribe">
+                                <h4>Subscription</h4>
+
+                                <div class="social">
+                                <a href="#"><i class="fa fa-facebook-square" data-toggle="tooltip" data-placement="top" data-original-title="facebook"></i></a>
+                                <a href="#"><i class="fa fa-instagram"  data-toggle="tooltip" data-placement="top" data-original-title="instragram"></i></a>
+                                <a href="#"><i class="fa fa-twitter-square" data-toggle="tooltip" data-placement="top" data-original-title="twitter"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-square" data-toggle="tooltip" data-placement="top" data-original-title="pinterest"></i></a>
+                                <a href="#"><i class="fa fa-tumblr-square" data-toggle="tooltip" data-placement="top" data-original-title="tumblr"></i></a>
+                                <a href="#"><i class="fa fa-youtube-square" data-toggle="tooltip" data-placement="top" data-original-title="youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.row-->
+                    </div>
+                    <!--/.container-->
+
+                <!--/.footer-bottom-->
+            </footer>
+
+            <div class="text-center copyright">Powered by Pleton C1 Web Development 2016</div>
+            <a href="#home" class="toTop scroll"><i class="fa fa-angle-up"></i></a>
+
+
+
+
+            <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                <!-- The container for the modal slides -->
+                <div class="slides"></div>
+                <!-- Controls for the borderless lightbox -->
+                <h3 class="title">title</h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <!-- The modal dialog, which will be used to wrap the lightbox content -->
+            </div>

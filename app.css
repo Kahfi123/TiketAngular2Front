@@ -1,0 +1,14 @@
+a {
+    cursor: pointer;
+}
+
+.help-block {
+    font-size: 12px;
+}
+td{
+   border:none;
+}
+th{
+  background-color: black;
+  color:white;
+}

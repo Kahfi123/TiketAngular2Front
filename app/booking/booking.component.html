@@ -1,0 +1,67 @@
+<div id="reservation" class="booking">
+  <h2 align="center">Informasi Reservasi Kereta Api</h2>
+  <div id="reservation_form" class="booking_form">
+      <table width = 800 border = 1 class="table-reservation" align = "center">
+        <tr>
+          <td>Nama KA (No)</td>
+          <td>:</td>
+          <td>
+            {{currentTrain.name}} ({{currentTrain.id}})
+          </td>
+        </tr>
+        <tr>
+          <td>Asal</td>
+          <td>:</td>
+          <td>
+            {{currentTrain.departure_in}}
+          </td>
+        </tr>
+        <tr>
+          <td>Tujuan</td>
+          <td>:</td>
+          <td>
+            {{currentTrain.arrive_in}}
+          </td>
+        </tr>
+        <tr>
+          <td>Berangkat</td>
+          <td>:</td>
+          <td>
+            {{currentTrain.departure_on | date: 'hh:mm:ss, dd-MM-yyyy'}}
+          </td>
+        </tr>
+        <tr>
+          <td>Tiba</td>
+          <td>:</td>
+          <td>
+            {{currentTrain.arrive_on | date: 'hh:mm:ss, dd-MM-yyyy'}}
+          </td>
+        </tr>
+        <tr>
+          <td>Harga Tiket</td>
+          <td>:</td>
+          <td>
+            Rp. {{currentTrain.price}},00
+          </td>
+        </tr>
+        <tr>
+          <td>Jumlah Penumpang</td>
+          <td>:</td>
+          <td>
+            {{jumlahPenumpang}}
+          </td>
+        </tr>
+        <tr>
+          <td>Ketentuan Pembayaran : Bla bla</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan = 3><input #female name="gender" type="checkbox"  value="Female" (click)="gender = female.value" /> Dengan ini saya setuju dan memenuhi persyaratan reservasi</td>
+        </tr>
+        <tr>
+          <td colspan = 3><button class = "ph-button ph-btn-blue" (click) = "goToRegister()">Lanjutkan</button></td>
+        </tr>
+      </table>
+  </div>
+</div>
