@@ -1,7 +1,7 @@
 export class Pemesan {
-  kodeBooking:number;
-  namaPemesan: string;
-  emailPemesan: string;
-  noTelp:string;
-  alamat:string;
+  kode_booking:number;
+  nama_pemesan: string;
+  email_pemesan: string;
+  nomor_telepon_pemesan:string;
+  alamat_pemesan:string;
 }

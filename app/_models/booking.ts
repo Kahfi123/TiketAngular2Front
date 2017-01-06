@@ -1,7 +1,7 @@
 export class Booking {
-  kodeBooking: number;
-  idLayananKereta: number;
-  jumlahPenumpang : number;
-  waktuBooking: date;
+  kode_booking: number;
+  id_layanan_kereta: number;
+  jumlah_penumpang : number;
+  waktu_mulai_booking: date;
 
 }

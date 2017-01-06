@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-
 import { User,Penumpang} from '../_models/index';
-
+import {Observable} from 'rxjs/Rx';
 @Injectable()
 export class UserService {
+
     constructor(private http: Http) { }
 
     getAll() {
         return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
     }
     getDays() {
+
         return this.http.get('/api/days', this.jwt()).map((response: Response) => response.json());
     }
     getStations() {
-        return this.http.get('/api/stations', this.jwt()).map((response: Response) => response.json());
+        return this.http.get('http://127.0.0.1:8000/stasiun/').map((response: Response) => response.json());
     }
 
     getById(id: number) {

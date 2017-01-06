@@ -1,4 +1,4 @@
 export class Stasiun {
-  idStasiun: number;
-  namaStasiun: string;
+  id_stasiun: string;
+  nama_stasiun: string;
 }

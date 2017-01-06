@@ -1,32 +1,30 @@
 <h2 align="center">Isi Data</h2>
+
   <h4 style="color:red" align = "center">Waktu Anda Tersisa :</h4>
   <div id="clockdiv" align = "center">
 
     <div>
-      <span class="minutes">10</span>
+      <span id ="time" class="minutes">10:00</span>
       <div class="smalltext" style="color:white">Menit</div>
     </div>
-    <div>
-      <span class="seconds">00</span>
-      <div class="smalltext" style="color:white">Detik</div>
-    </div>
+
   </div>
 <br>
 
-    <table border=1 align="center" width=400>
+    <table border=1 align="center" width=600>
     <tr><td><h3 align="center">Data Penumpang</h3></td></tr>
       <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !namaPenumpang.valid }">
-            <div *ngFor="let a of jumlahInputPenumpang; let index = index">
+          <div class="form-group">
+
               <tr>
                 <td><label for ="no">No. </label></td>
                 <td><label for="nama">Nama</label></td>
                 <td><label for="id1" style="color:red;font-size:10px">= 17 tahun nomor ID (KTP,SIM,Pasport) *</label></td>
               </tr>
-              <tr>
+              <tr *ngFor="let a of penumpang; let index = index">
                 <td>{{index+1}}</td>
-                <td><input type="text" class="form-control" name="namaPenumpang" [(ngModel)]="model.namaPenumpang" #namaPenumpang="ngModel" required /></td>
-                <td><input type="text" class="form-control" name="idPenumpang" [(ngModel)]="model.idPenumpang" #idPenumpang="ngModel" required /></td>
+                <td><input type="text" class="form-control" name="namaPenumpang" [(ngModel)]="nama_penumpang[index]" /></td>
+                <td><input type="text" class="form-control" name="idPenumpang" [(ngModel)]="nomor_identitas[index]"  /></td>
               </tr>
               <tr>
                 <td><label for ="1"></label></td>
@@ -34,8 +32,8 @@
                 <td><label for="id2" style="color:red;font-size:10px">< 17 tahun jika tidak memiliki ID diisi tanggal lahir format hhbbtttt
 </label></td>
               </tr>
-            </div>
-            <div>
+
+
           <tr><td colspan=3><h3 align="center">Data Pemesan</h3></td></tr>
 
               <tr>
@@ -45,8 +43,8 @@
               </tr>
               <tr>
                 <td></td>
-                <td><input type="text" class="form-control" name="namaPemesan" [(ngModel)]="model.namaPemesan" #namaPemesan="ngModel" required /></td>
-                <td><input type="text" class="form-control" name="emailPemesan" [(ngModel)]="model.emailPemesan" #emailPemesan="ngModel" required /></td>
+                <td><input type="text" class="form-control" name="namaPemesan" [(ngModel)]="pemesan.nama_pemesan" #namaPemesan="ngModel" required /></td>
+                <td><input type="text" class="form-control" name="emailPemesan" [(ngModel)]="pemesan.email_pemesan" #emailPemesan="ngModel" required /></td>
               </tr>
               <tr>
                 <td></td>
@@ -55,14 +53,14 @@
               </tr>
               <tr>
                 <td></td>
-                <td><input type="text" class="form-control" name="noTelp" [(ngModel)]="model.noTelp" #noTelp="ngModel" required /></td>
-                <td><input type="text" class="form-control" name="alamatPemesan" [(ngModel)]="model.alamatPemesan" #alamatPemesan="ngModel" required /></td>
+                <td><input type="text" class="form-control" name="noTelp" [(ngModel)]="pemesan.nomor_telepon_pemesan" #noTelp="ngModel" required /></td>
+                <td><input type="text" class="form-control" name="alamatPemesan" [(ngModel)]="pemesan.alamat_pemesan" #alamatPemesan="ngModel" required /></td>
               </tr>
-            </div>
+
 </div>
 
           <div align="center" class="form-group">
-              <a class="btn btn-primary" style="background-color:#262626">Sebelumnya</a>
+
               <button [disabled]="loading" class="btn btn-primary" style="background-color:#262626">Selanjutnya</button>
 
               <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />

@@ -8,11 +8,11 @@
     <th>Ketersediaan</th>
   </tr>
   <tr *ngFor="let train of trains">
-    <td>{{train.name}} ({{train.id}})</td>
-    <td>{{train.departure_on | date: 'hh:mm:ss'}}</td>
-    <td>{{train.arrive_on | date: 'hh:mm:ss'}}</td>
-    <td>Rp {{train.price}}</td>
-    <td *ngIf="train.slot>=jumlahPenumpang"><button class = "ph-button ph-btn-blue" (click) = "gotoBooking(train)">Pesan</button></td>
-    <td *ngIf="train.slot<jumlahPenumpang">Habis</td>
+    <td>{{train.nama_kereta}} ({{train.id_kereta}})</td>
+    <td>{{train.berangkat | date: 'medium'}}</td>
+    <td>{{train.datang | date: 'medium'}}</td>
+    <td>Rp {{train.harga}}</td>
+    <td *ngIf="train.kapasitas>=jumlahPenumpang"><button class = "ph-button ph-btn-blue" (click) = "gotoBooking(train)">Pesan</button></td>
+    <td *ngIf="train.kapasitas<jumlahPenumpang">Habis</td>
   </tr>
 </table>

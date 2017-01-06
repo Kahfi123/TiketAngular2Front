@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Penumpang,Booking,Pemesan } from '../_models/index';
 import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -22,22 +23,72 @@ export class AuthenticationService {
         return this.http.post('/api/konfirmasiPembayaran', JSON.stringify({ kodePembayaran: kodePembayaran}))
 
     }
-    tampilkanKereta(date: number,departure: number,arrive: number,slot: number)
+    tampilkanKereta(tahun: number,hari: number, bulan: number,departure: string,arrive: string,slot: number)
     {
-        return this.http.post('/api/showTrains', JSON.stringify({ date: date,departure:departure,arrive:arrive,slot:slot}))
-            .map((response: Response) => {
+        return this.http.get('http://localhost:8000/perjalanan/'+tahun+'/'+bulan+'/'+hari+'/'+departure+'/'+arrive+'/'+slot+'/')
 
+            .map((response: Response) => {
                 let trains = response.json();
+
+
                 if (trains) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+
                     localStorage.setItem('currentTrains', JSON.stringify(trains));
-                    
+
                 }
             });
     }
+    buatKodeBooking(jumlahPenumpang : string, id_layanan_kereta: string)
+    {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:8000/booking/', JSON.stringify({ 'jumlah_penumpang': jumlahPenumpang,'id_layanan_kereta':id_layanan_kereta}),options)
+        .map((response: Response) => {
+            let kode_booking = response.json();
 
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+
+            if (kode_booking) {
+
+                localStorage.setItem('kode_booking', JSON.stringify(kode_booking));
+
+
+            }
+        });
     }
+    buatDataPenumpang(penumpang: Penumpang)
+    {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:8000/penumpang/', JSON.stringify({ penumpang }),options)
+        .map((response: Response) => {
+            let penumpang = response.json();
+
+
+            if (penumpang) {
+
+                localStorage.setItem('kode_booking', JSON.stringify(kode_booking));
+
+
+            }
+        });
+    }
+    buatDataPemesan(pemesan: Pemesan)
+    {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post('http://localhost:8000/pemesan/', JSON.stringify({ pemesan }),options)
+      .map((response: Response) => {
+          let pemesan = response.json();
+
+
+          if (pemesan) {
+
+              localStorage.setItem('kode_booking', JSON.stringify(kode_booking));
+
+
+          }
+      });
+    }
+
+
 }

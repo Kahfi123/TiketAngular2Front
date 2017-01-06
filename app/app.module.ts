@@ -2,11 +2,9 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { LOCALE_ID } from '@angular/core';
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers/index';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
+
 
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
@@ -53,11 +51,11 @@ import { BerandaComponent }   from './beranda/beranda.component';
         AlertService,
         AuthenticationService,
         UserService,
+        { provide: LOCALE_ID, useValue: "in-ID" },
+
 
         // providers used to create fake backend
-        fakeBackendProvider,
-        MockBackend,
-        BaseRequestOptions
+
     ],
     bootstrap: [AppComponent]
 })

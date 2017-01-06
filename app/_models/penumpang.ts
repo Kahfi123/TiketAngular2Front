@@ -1,6 +1,6 @@
 export class Penumpang {
-  idPenumpang: number;
-  noIdentitas:number;
-  namaPenumpang: string;
-  kodeBooking:number;
+  id_penumpang: number;
+  nomor_identitas:string;
+  nama_penumpang: string;
+  kode_booking:number;
 }

@@ -6,42 +6,42 @@
           <td>Nama KA (No)</td>
           <td>:</td>
           <td>
-            {{currentTrain.name}} ({{currentTrain.id}})
+            {{nama_kereta}} ({{id_kereta}})
           </td>
         </tr>
         <tr>
           <td>Asal</td>
           <td>:</td>
           <td>
-            {{currentTrain.departure_in}}
+            {{stasiun_asal}}
           </td>
         </tr>
         <tr>
           <td>Tujuan</td>
           <td>:</td>
           <td>
-            {{currentTrain.arrive_in}}
+            {{stasiun_tujuan}}
           </td>
         </tr>
         <tr>
           <td>Berangkat</td>
           <td>:</td>
           <td>
-            {{currentTrain.departure_on | date: 'hh:mm:ss, dd-MM-yyyy'}}
+            {{berangkat | date: 'medium'}}
           </td>
         </tr>
         <tr>
           <td>Tiba</td>
           <td>:</td>
           <td>
-            {{currentTrain.arrive_on | date: 'hh:mm:ss, dd-MM-yyyy'}}
+            {{datang | date: 'medium'}}
           </td>
         </tr>
         <tr>
           <td>Harga Tiket</td>
           <td>:</td>
           <td>
-            Rp. {{currentTrain.price}},00
+            Rp. {{harga}},00
           </td>
         </tr>
         <tr>

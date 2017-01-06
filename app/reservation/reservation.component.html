@@ -17,7 +17,7 @@
                 <td>
                   <select #date class="form-control">
                     <option value="0">...</option>
-                    <option [value]="day.id" *ngFor="let day of days">{{day.date | date: 'dd MMMM yyyy'}}</option>
+                    <option [value]="day.date" *ngFor="let day of days">{{day.date | date: 'dd MMMM yyyy'}}</option>
                   </select>
                 </td>
                 <td></td>
@@ -33,7 +33,7 @@
                 <td>
                   <select #departure class="form-control">
                     <option value="0">...</option>
-                    <option [value]="station.id" *ngFor="let station of stations">{{station.name}}</option>
+                    <option [value]="station.id_stasiun" *ngFor="let station of stations">{{station.nama_stasiun}}</option>
                   </select>
                 </td>
                 <td></td>
@@ -48,7 +48,7 @@
                 <td>
                   <select #arrive class="form-control">
                     <option value="0">...</option>
-                    <option [value]="station.id" *ngFor="let station of stations">{{station.name}}</option>
+                    <option [value]="station.id_stasiun" *ngFor="let station of stations">{{station.nama_stasiun}}</option>
                   </select>
                 </td>
                 <td></td>
