@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Penumpang,Booking,Pemesan } from '../_models/index';
+import { Penumpang,Booking,Pemesan,CaraBooking } from '../_models/index';
 import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -19,6 +19,7 @@ export class AuthenticationService {
                 }
             });
     }
+
     konfirmasiPembayaran(kodePembayaran: number) {
         return this.http.post('/api/konfirmasiPembayaran', JSON.stringify({ kodePembayaran: kodePembayaran}))
 
@@ -64,7 +65,13 @@ export class AuthenticationService {
         return this.http.post('http://localhost:8000/penumpang/', JSON.stringify({ 'nomor_identitas':penumpang.nomor_identitas,'nama_penumpang':penumpang.nama_penumpang,'kode_booking':penumpang.kode_booking }),options)
         .map((response: Response) => {
             let penumpang = response.json();
-            console.log(penumpang)
+            let array_penumpang: any[] = JSON.parse(localStorage.getItem('penumpang')) || [];
+          
+            if(penumpang)
+            {
+              array_penumpang.push(penumpang);
+              localStorage.setItem('penumpang',JSON.stringify(array_penumpang));
+            }
 
 
 
@@ -80,6 +87,20 @@ export class AuthenticationService {
       .map((response: Response) => {
           let pemesan = response.json();
 
+      });
+    }
+    buatDataPembayaran(cara_bayar: CaraBayar,kode_booking: number)
+    {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post('http://localhost:8000/pembayaran/', JSON.stringify({ 'kode_booking':kode_booking,'id_cara_bayar' : cara_bayar.id_cara_bayar}),options)
+      .map((response: Response) => {
+            let pembayaran = response.json();
+            if(pembayaran)
+            {
+              localStorage.setItem('pembayaran',JSON.stringify(pembayaran));
+
+            }
       });
     }
 

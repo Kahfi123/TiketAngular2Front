@@ -11,5 +11,6 @@ export class Train {
   durasi: number;
   kapasitas: number;
   harga: number;
+  
 
 }

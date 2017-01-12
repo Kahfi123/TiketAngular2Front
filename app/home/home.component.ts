@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { User, Train } from '../_models/index';
-import { UserService } from '../_services/index';
+import { Router } from '@angular/router';
+import { User, Train,CaraBayar } from '../_models/index';
+import { UserService,AuthenticationService } from '../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -11,7 +11,7 @@ import { UserService } from '../_services/index';
 
 export class HomeComponent implements OnInit {
     currentUser: User;
-    users: User[] = [];
+    cara_bayar : CaraBayar[] = [];
     train: Train;
     id_layanan_kereta: number;
     nama_kereta :string;
@@ -24,8 +24,11 @@ export class HomeComponent implements OnInit {
     harga: number;
     total_harga: number;
     jumlahPenumpang:number;
-    penumpang : Array<Penumpang> = new Array(3);
-    constructor(private userService: UserService) {
+    cara_bayar: string;
+    selected_cara_bayar: CaraBayar[] = [];
+    penumpang : Array<Penumpang> = new Array(JSON.parse(localStorage.getItem('jumlahPenumpang')));
+    Booking : Booking[];
+    constructor(private userService: UserService, private authenticationService : AuthenticationService,private router: Router) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.nama_kereta = localStorage.getItem('nama_kereta');
         this.id_layanan_kereta = localStorage.getItem('id_layanan_kereta');
@@ -37,12 +40,15 @@ export class HomeComponent implements OnInit {
         this.jumlahPenumpang = JSON.parse(localStorage.getItem('jumlahPenumpang'));
         this.harga = localStorage.getItem('harga_tiket');
         this.total_harga = this.harga*this.jumlahPenumpang;
-        console.log(this.train);
+        this.Booking = JSON.parse(localStorage.getItem('kode_booking'));
+        this.penumpang = JSON.parse(localStorage.getItem('penumpang'));
+      
+
 
     }
 
     ngOnInit() {
-        this.loadAllUsers();
+
         $('#time').text(localStorage.getItem('time'));
         var res = localStorage.getItem('time').split(":");
         res[0] = parseInt(res[0]);
@@ -50,6 +56,18 @@ export class HomeComponent implements OnInit {
         var tenMinutes = res[0]*60+res[1]-1,
         display = document.querySelector('#time');
         this.startTimer(tenMinutes, display);
+        this.userService.getCaraBayar()
+            .subscribe(response => {
+                this.cara_bayar = response;
+
+
+            });
+
+    }
+    onSelectionChange(cara_bayar) {
+        this.selected_cara_bayar = cara_bayar;
+
+        localStorage.setItem('cara_bayar', cara_bayar.detil_cara_bayar);
     }
     startTimer(duration, display) {
         var timer = duration, minutes, seconds;
@@ -70,12 +88,16 @@ export class HomeComponent implements OnInit {
             }
         }, 1000);
     }
-
-    deleteUser(id: number) {
-        this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
+    gotoFinish(){
+      this.authenticationService.buatDataPembayaran(this.selected_cara_bayar,this.Booking.kode_booking)
+          .subscribe(
+              data => {
+                  this.router.navigate(['konfirmasi']);
+              },
+      );
     }
 
-    private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
-    }
+
+
+
 }

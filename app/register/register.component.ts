@@ -64,6 +64,7 @@ export class RegisterComponent implements OnInit {
 
                    },
            );
+           
            //this.penumpang.push(this.pen);
         }
         this.pemesan.kode_booking = this.Booking.kode_booking;

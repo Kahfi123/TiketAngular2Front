@@ -29,13 +29,13 @@ export class DaftarKeretaComponent implements OnInit {
             {
 
               this.train.berangkat = rangkaian.waktu;
-              this.train.stasiun_asal = rangkaian.id_stasiun.nama_stasiun
+              this.train.stasiun_asal = rangkaian.id_stasiun.nama_stasiun;
 
             }
             else
             {
               this.train.datang = rangkaian.waktu;
-              this.train.stasiun_tujuan = rangkaian.id_stasiun.nama_stasiun
+              this.train.stasiun_tujuan = rangkaian.id_stasiun.nama_stasiun;
               this.train.id_layanan_kereta = rangkaian.id_layanan_kereta.id_layanan_kereta;
               this.train.id_kereta = rangkaian.id_layanan_kereta.id_kereta.id_kereta;
               this.train.nama_kereta = rangkaian.id_layanan_kereta.id_kereta.nama_kereta;

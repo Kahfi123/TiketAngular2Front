@@ -1,5 +1,7 @@
 export class Pembayaran {
-  kodePembayaran : number;
-  waktuPenagihan : date;
-  waktuPembayaran : date;
+  kode_pembayaran : number;
+  kode_booking : number;
+  id_cara_bayar : number;
+  waktu_penagihan : date;
+  waktu_pembayaran : date;
 }

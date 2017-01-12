@@ -21,7 +21,7 @@ export class ReservationComponent implements OnInit {
 
     ngOnInit() {
         // get days from secure api end point
-
+      localStorage.removeItem('penumpang');
       for (var i = 1; i <= 90; i++) {
           this.days.push({id: i, date: new Date(new Date().getTime()+(i*24*60*60*1000))});
       }
