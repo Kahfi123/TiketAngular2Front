@@ -20,11 +20,11 @@
       <th>Tiba</th>
     </tr>
     <tr>
-      <td>09-11-2016</td>
-      <td>19A</td>
-      <td>Argo Parahyangan</td>
-      <td>11:50 , 09 Nov 2016 Bandung(BD)</td>
-      <td>14:57 , 09 Nov 2016 Gambir(GMR)</td>
+      <td>{{datang | date:'fullDate'}}</td>
+      <td>{{id_kereta}}</td>
+      <td>{{nama_kereta}}</td>
+      <td>{{berangkat | date:'medium'}} {{stasiun_asal}}</td>
+      <td>{{datang | date:'medium'}} {{stasiun_tujuan}}</td>
     </tr><tr>
       <tr>
         <td colspan = 5><h4>Info Penumpang</h4></td>
@@ -54,11 +54,11 @@
 
     </tr><tr>
     <tr>
-      <td>1</td>
+      <td>{{jumlahPenumpang}}</td>
       <td></td>
       <td></td>
-      <td>Rp. 120.000</td>
-      <td>Rp. 120.000</td>
+      <td>{{harga}}</td>
+      <td>{{total_harga}}</td>
 
     </tr><tr>
     <tr>
@@ -66,9 +66,18 @@
       <td></td>
       <td></td>
       <td>Harga Total : </td>
-      <td>Rp. 120.000</td>
+      <td>{{total_harga}}</td>
 
-    </tr><tr>
+    </tr>
+    <tr>
+      <td colspan = 5><h4>Pilih Tipe Pembayaran</h4></td>
+    </tr>
+    <tr *ngFor="let a of penumpang; let index = index">
+        <input type="radio" [(ngModel)]="buildTool" name="buildTool" value="gradle">Gradle
+    </tr>
+
+
+
 
 
   </table>

@@ -58,28 +58,26 @@ export class RegisterComponent implements OnInit {
            this.pen.nama_penumpang = this.nama_penumpang[i];
            this.pen.nomor_identitas = this.nomor_identitas[i];
            this.pen.kode_booking = this.Booking.kode_booking;
-           this.penumpang.push(this.pen);
-        }
+           this.authenticationService.buatDataPenumpang(this.pen)
+               .subscribe(
+                   data => {
 
-        console.log(this.penumpang);
-        console.log(this.pemesan);
-        for(var i = 0 ; i < this.penumpang.length; i++)
+                   },
+           );
+           //this.penumpang.push(this.pen);
+        }
+        this.pemesan.kode_booking = this.Booking.kode_booking;
+        /*for(var i = 0 ; i < this.penumpang.length; i++)
         {
-          this.authenticationService.buatDataPenumpang(this.penumpang)
-              .subscribe(
-                  data => {
 
-                  },
-          );
-        }
+        }*/
         this.authenticationService.buatDataPemesan(this.pemesan)
             .subscribe(
                 data => {
 
-                    if(i-1 == this.penumpang.lenght)
-                    {
-                       this.router.navigate(['register']);
-                    }
+
+                       this.router.navigate(['home']);
+
 
                 },
         );

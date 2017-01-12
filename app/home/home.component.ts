@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../_models/index';
+import { User, Train } from '../_models/index';
 import { UserService } from '../_services/index';
 
 @Component({
@@ -12,9 +12,33 @@ import { UserService } from '../_services/index';
 export class HomeComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
-
+    train: Train;
+    id_layanan_kereta: number;
+    nama_kereta :string;
+    id_kereta:number;
+    jumlah_penumpang:number;
+    berangkat : date;
+    stasiun_asal: string;
+    stasiun_tujuan: string;
+    datang : date;
+    harga: number;
+    total_harga: number;
+    jumlahPenumpang:number;
+    penumpang : Array<Penumpang> = new Array(3);
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.nama_kereta = localStorage.getItem('nama_kereta');
+        this.id_layanan_kereta = localStorage.getItem('id_layanan_kereta');
+        this.id_kereta = localStorage.getItem('id_kereta');
+        this.berangkat = new Date(localStorage.getItem('berangkat'));
+        this.stasiun_asal = localStorage.getItem('stasiun_asal');
+        this.stasiun_tujuan = localStorage.getItem('stasiun_tujuan');
+        this.datang = new Date(localStorage.getItem('datang'));
+        this.jumlahPenumpang = JSON.parse(localStorage.getItem('jumlahPenumpang'));
+        this.harga = localStorage.getItem('harga_tiket');
+        this.total_harga = this.harga*this.jumlahPenumpang;
+        console.log(this.train);
+
     }
 
     ngOnInit() {

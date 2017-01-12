@@ -25,6 +25,7 @@ export class AuthenticationService {
     }
     tampilkanKereta(tahun: number,hari: number, bulan: number,departure: string,arrive: string,slot: number)
     {
+
         return this.http.get('http://localhost:8000/perjalanan/'+tahun+'/'+bulan+'/'+hari+'/'+departure+'/'+arrive+'/'+slot+'/')
 
             .map((response: Response) => {
@@ -57,36 +58,28 @@ export class AuthenticationService {
     }
     buatDataPenumpang(penumpang: Penumpang)
     {
+
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:8000/penumpang/', JSON.stringify({ penumpang }),options)
+        return this.http.post('http://localhost:8000/penumpang/', JSON.stringify({ 'nomor_identitas':penumpang.nomor_identitas,'nama_penumpang':penumpang.nama_penumpang,'kode_booking':penumpang.kode_booking }),options)
         .map((response: Response) => {
             let penumpang = response.json();
+            console.log(penumpang)
 
 
-            if (penumpang) {
-
-                localStorage.setItem('kode_booking', JSON.stringify(kode_booking));
 
 
-            }
         });
     }
     buatDataPemesan(pemesan: Pemesan)
     {
+
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.post('http://localhost:8000/pemesan/', JSON.stringify({ pemesan }),options)
+      return this.http.post('http://localhost:8000/pemesan/', JSON.stringify({ 'kode_booking':pemesan.kode_booking,'nama_pemesan' : pemesan.nama_pemesan, 'email_pemesan':pemesan.email_pemesan, 'nomor_telepon_pemesan': pemesan.nomor_telepon_pemesan,'alamat_pemesan': pemesan.alamat_pemesan }),options)
       .map((response: Response) => {
           let pemesan = response.json();
 
-
-          if (pemesan) {
-
-              localStorage.setItem('kode_booking', JSON.stringify(kode_booking));
-
-
-          }
       });
     }
 

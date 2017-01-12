@@ -33,12 +33,13 @@ export class ReservationComponent implements OnInit {
             });
 
     }
-    tampilkanKereta(date: Date,departure: string,arrive: string,slot: number){
+    tampilkanKereta(date: string,departure: string,arrive: string,slot: number){
 
       localStorage.setItem('jumlahPenumpang', slot);
+      var tanggal = date.split(" ");
       var d = new Date(date);
       var bulan = d.getMonth()+1;
-      var hari = d.getDay()+1;
+      var hari = tanggal[2];
       var tahun = d.getFullYear();
       if(arrive == departure)
       {

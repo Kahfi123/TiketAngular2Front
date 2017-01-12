@@ -10,7 +10,7 @@ import { UserService,AuthenticationService, } from '../_services/index';
 })
 
 export class BookingComponent implements OnInit {
-  currentTrain: Train;
+  currentTrain: Train[] = [];
   id_layanan_kereta: number;
   nama_kereta :string;
   id_kereta:number;
@@ -18,7 +18,6 @@ export class BookingComponent implements OnInit {
   berangkat : date;
   stasiun_asal: string;
   stasiun_tujuan: string;
-
   datang : date;
   harga: number;
   trains: Train[] = [];
@@ -42,7 +41,7 @@ export class BookingComponent implements OnInit {
     }
     goToRegister(): void {
       this.loading = true;
-      
+
       this.authenticationService.buatKodeBooking(this.jumlahPenumpang,this.id_layanan_kereta)
           .subscribe(
               data => {
