@@ -19,7 +19,7 @@ export class KodeComponent {
         private alertService: AlertService) { }
 
     cekKodeBooking() {
-  
+
         this.loading = true;
         this.authenticationService.cekKodeBooking(this.model.kodePembayaran)
             .subscribe(

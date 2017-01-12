@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../_models/index';
+import { User, Booking, Penumpang } from '../_models/index';
 import { UserService } from '../_services/index';
 
 @Component({
@@ -10,22 +10,39 @@ import { UserService } from '../_services/index';
 })
 
 export class HasilKodeComponent implements OnInit {
-    currentUser: User;
-    users: User[] = [];
+    booking: any;
+    kode_booking : number ;
+    kode_pembayaran : number;
+    nama_pemesan : string;
+    array_penumpang : penumpang[] = [];
+
 
     constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.booking = JSON.parse(localStorage.getItem('book'));
+        for (var b of this.booking)
+        {
+            this.kode_pembayaran = b.pembayaran[0].kode_pembayaran;
+            this.nama_pemesan = b.pemesan[0].nama_pemesan;
+            if(b.pembayaran[0].waktu_pembayaran == null)
+            {
+              this.kode_booking = "*********";
+            }
+            else
+            {
+              this.kode_booking = b.kode_booking;
+            }
+            for(var a of b.penumpang)
+            {
+              this.array_penumpang.push(a);
+
+            }
+
+        }
     }
 
     ngOnInit() {
-        this.loadAllUsers();
+
     }
 
-    deleteUser(id: number) {
-        this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
-    }
 
-    private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
-    }
 }

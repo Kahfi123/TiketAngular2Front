@@ -24,8 +24,9 @@ export class KonfirmasiPembayaranComponent {
         this.authenticationService.konfirmasiPembayaran(this.model.kodePembayaran)
             .subscribe(
                 data => {
+                  this.loading=false
                     this.alertService.success('Berhasil Menyelesaikan Pembayaran', true);
-                    this.router.navigate(['cekKodeBooking']);
+                    //this.router.navigate(['cekKodeBooking']);
                 },
                 error => {
                     this.alertService.error(error);

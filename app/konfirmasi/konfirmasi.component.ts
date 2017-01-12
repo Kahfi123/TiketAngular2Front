@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { User, Pembayaran } from '../_models/index';
+import { Pembayaran } from '../_models/index';
 import { UserService } from '../_services/index';
 
 @Component({
@@ -9,8 +9,7 @@ import { UserService } from '../_services/index';
     styleUrls: ['konfirmasi.component.css']
 })
 
-export class KonfirmasiComponent implements OnInit {
-    currentUser: User;
+export class KonfirmasiComponent implements OnInit,OnDestroy {
     users: User[] = [];
     cara_bayar: string;
     pembayaran: Pembayaran[] = [];
@@ -28,7 +27,7 @@ export class KonfirmasiComponent implements OnInit {
     trains: Train[] = [];
 
     constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
         this.cara_bayar = localStorage.getItem('cara_bayar');
         this.pembayaran  = JSON.parse(localStorage.getItem('pembayaran'));
         var d = new Date(this.pembayaran.waktu_penagihan);
@@ -49,6 +48,24 @@ export class KonfirmasiComponent implements OnInit {
     }
 
     ngOnInit() {
+
+    }
+    ngOnDestroy(): void {
+            localStorage.removeItem('cara_bayar');
+            localStorage.removeItem('penumpang');
+            localStorage.removeItem('booking');
+            localStorage.removeItem('nama_kereta');
+            localStorage.removeItem('id_layanan_kereta');
+            localStorage.removeItem('id_kereta');
+            localStorage.removeItem('berangkat');
+            localStorage.removeItem('stasiun_asal');
+            localStorage.removeItem('stasiun_tujuan');
+            localStorage.removeItem('datang');
+            localStorage.removeItem('berangkat');
+            localStorage.removeItem('jumlahPenumpang');
+            localStorage.removeItem('harga_tiket');
+            localStorage.removeItem('currentTrains');
+            localStorage.removeItem('train');
 
     }
 

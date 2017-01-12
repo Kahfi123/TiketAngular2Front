@@ -11,9 +11,9 @@
       <th>Nama Pemesanan</th>
     </tr>
     <tr>
-      <td>{{currentUser.kodeBooking}}</td>
-      <td>{{currentUser.kodePembayaran}}</td>
-      <td>{{currentUser.namaPemesan}}</td>
+      <td>{{kode_booking}}</td>
+      <td>{{kode_pembayaran}}</td>
+      <td>{{nama_pemesan}}</td>
     </tr><tr>
       <tr>
         <td colspan = 5><h4>Info Penumpang</h4></td>
@@ -25,15 +25,15 @@
 
 
       </tr>
-      <tr>
-        <td>1</td>
-        <td>{{currentUser.namaPenumpang}}</td>
-        <td>{{currentUser.idPenumpang}}</td>
+      <tr *ngFor="let a of array_penumpang; let index = index">
+        <td>{{index+1}}</td>
+        <td>{{a.nama_penumpang}}</td>
+        <td>{{a.nomor_identitas}}</td>
       </tr>
 
 
   </table>
 
 
-
-  <p align="center"><a [routerLink]="['/register']" class="btn btn-primary" style="background-color:#262626">Kembali</a>
+  <br>
+  <p align="center"><a [routerLink]="['/cekKodeBooking']" class="btn btn-primary" style="background-color:#262626">Kembali</a>

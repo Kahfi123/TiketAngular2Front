@@ -8,20 +8,24 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
     constructor(private http: Http) { }
 
-    cekKodeBooking(kodePembayaran: number) {
-        return this.http.post('/api/cekKode', JSON.stringify({ kodePembayaran: kodePembayaran}))
+    cekKodeBooking(kode_pembayaran: number) {
+        return this.http.get('http://localhost:8000/booking/'+kode_pembayaran+'/')
             .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let user = response.json();
-                if (user) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
+
+                let booking = response.json();
+                if (booking) {
+
+
+                    localStorage.setItem('book', JSON.stringify(booking));
                 }
             });
     }
 
-    konfirmasiPembayaran(kodePembayaran: number) {
-        return this.http.post('/api/konfirmasiPembayaran', JSON.stringify({ kodePembayaran: kodePembayaran}))
+    konfirmasiPembayaran(kode_pembayaran: number) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        var currentTime = new Date();
+        return this.http.patch('http://localhost:8000/pembayaran/'+kode_pembayaran+'/', JSON.stringify({ 'kode_pembayaran': kode_pembayaran,'waktu_pembayaran':currentTime}),options)
 
     }
     tampilkanKereta(tahun: number,hari: number, bulan: number,departure: string,arrive: string,slot: number)
@@ -66,7 +70,7 @@ export class AuthenticationService {
         .map((response: Response) => {
             let penumpang = response.json();
             let array_penumpang: any[] = JSON.parse(localStorage.getItem('penumpang')) || [];
-          
+
             if(penumpang)
             {
               array_penumpang.push(penumpang);

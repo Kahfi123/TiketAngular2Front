@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Day,Stasiun, Train } from '../_models/index';
 import { UserService,AuthenticationService,AlertService } from '../_services/index';
@@ -8,7 +8,7 @@ import { UserService,AuthenticationService,AlertService } from '../_services/ind
     templateUrl: 'reservation.component.html'
 })
 
-export class ReservationComponent implements OnInit {
+export class ReservationComponent implements OnInit,OnDestroy {
     days: Day[] = [];
     stations : Stasiun[] = [];
     loading = false;
@@ -17,11 +17,14 @@ export class ReservationComponent implements OnInit {
         private router: Router,
         private userService: UserService,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) { }
+        private alertService: AlertService) {
+      
+      }
+
 
     ngOnInit() {
         // get days from secure api end point
-      localStorage.removeItem('penumpang');
+
       for (var i = 1; i <= 90; i++) {
           this.days.push({id: i, date: new Date(new Date().getTime()+(i*24*60*60*1000))});
       }
