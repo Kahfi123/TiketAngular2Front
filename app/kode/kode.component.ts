@@ -24,6 +24,7 @@ export class KodeComponent {
         this.authenticationService.cekKodeBooking(this.model.kodePembayaran)
             .subscribe(
                 data => {
+
                     this.alertService.success('Kode Booking ditemukan', true);
                     this.router.navigate(['hasilKode']);
                 },

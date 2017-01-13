@@ -23,6 +23,7 @@ export class BookingComponent implements OnInit {
   trains: Train[] = [];
   jumlahPenumpang:number;
   loading = false;
+  setuju : boolean = false;
 
     constructor(private userService: UserService,private authenticationService: AuthenticationService,private router: Router) {
       this.nama_kereta = localStorage.getItem('nama_kereta');
@@ -39,16 +40,34 @@ export class BookingComponent implements OnInit {
     ngOnInit() {
 
     }
+
+    addProp1(e) {
+
+       if(e.target.checked){
+          this.setuju = true;
+       }
+       else
+       {
+         this.setuju = false;
+       }
+    }
     goToRegister(): void {
       this.loading = true;
+      if(this.setuju == false)
+      {
+        window.alert("Anda harus menyetujui persyaratan reservasi untuk melanjutkan");
+      }
+      else
+      {
+        this.authenticationService.buatKodeBooking(this.jumlahPenumpang,this.id_layanan_kereta)
+            .subscribe(
+                data => {
 
-      this.authenticationService.buatKodeBooking(this.jumlahPenumpang,this.id_layanan_kereta)
-          .subscribe(
-              data => {
+                    this.router.navigate(['register']);
+                },
+            );
 
-                  this.router.navigate(['register']);
-              },
-          );
+      }
 
 
     }

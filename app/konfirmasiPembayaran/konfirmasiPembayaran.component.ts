@@ -26,10 +26,10 @@ export class KonfirmasiPembayaranComponent {
                 data => {
                   this.loading=false
                     this.alertService.success('Berhasil Menyelesaikan Pembayaran', true);
-                    //this.router.navigate(['cekKodeBooking']);
+                    this.router.navigate(['konfirmasiPembayaran']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.alertService.error("Kode pembayaran tidak ditemukan");
                     this.loading = false;
                 });
 

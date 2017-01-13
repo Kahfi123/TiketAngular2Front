@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     total_harga: number;
     jumlahPenumpang:number;
     cara_bayar: string;
+    pilih_cara_bayar = false;
     selected_cara_bayar: CaraBayar[] = [];
     penumpang : Array<Penumpang> = new Array(JSON.parse(localStorage.getItem('jumlahPenumpang')));
     Booking : Booking[];
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit {
         this.total_harga = this.harga*this.jumlahPenumpang;
         this.Booking = JSON.parse(localStorage.getItem('kode_booking'));
         this.penumpang = JSON.parse(localStorage.getItem('penumpang'));
-      
+
 
 
     }
@@ -66,8 +67,8 @@ export class HomeComponent implements OnInit {
     }
     onSelectionChange(cara_bayar) {
         this.selected_cara_bayar = cara_bayar;
-
-        localStorage.setItem('cara_bayar', cara_bayar.detil_cara_bayar);
+        this.pilih_cara_bayar = true;
+        //localStorage.setItem('cara_bayar', cara_bayar.detil_cara_bayar);
     }
     startTimer(duration, display) {
         var timer = duration, minutes, seconds;
@@ -89,12 +90,21 @@ export class HomeComponent implements OnInit {
         }, 1000);
     }
     gotoFinish(){
-      this.authenticationService.buatDataPembayaran(this.selected_cara_bayar,this.Booking.kode_booking)
-          .subscribe(
-              data => {
-                  this.router.navigate(['konfirmasi']);
-              },
-      );
+      if(this.pilih_cara_bayar == false)
+      {
+        window.alert("Anda harus memilih tipe pembayaran untuk melanjutkan");
+      }
+      else
+      {
+        localStorage.setItem('cara_bayar', this.selected_cara_bayar.detil_cara_bayar);
+        this.authenticationService.buatDataPembayaran(this.selected_cara_bayar,this.Booking.kode_booking)
+            .subscribe(
+                data => {
+                    this.router.navigate(['konfirmasi']);
+                },
+        );
+      }
+
     }
 
 

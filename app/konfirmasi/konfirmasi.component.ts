@@ -25,6 +25,7 @@ export class KonfirmasiComponent implements OnInit,OnDestroy {
     total_harga :number;
     penumpang : Array<Penumpang> = new Array(JSON.parse(localStorage.getItem('jumlahPenumpang')));
     trains: Train[] = [];
+    setuju : boolean = false;
 
     constructor(private userService: UserService) {
 
@@ -45,11 +46,14 @@ export class KonfirmasiComponent implements OnInit,OnDestroy {
         this.total_harga = this.harga*this.jumlah_penumpang;
         this.penumpang = JSON.parse(localStorage.getItem('penumpang'));
 
+
     }
 
     ngOnInit() {
 
     }
+
+
     ngOnDestroy(): void {
             localStorage.removeItem('cara_bayar');
             localStorage.removeItem('penumpang');

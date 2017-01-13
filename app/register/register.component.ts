@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit {
     loading = false;
     returnUrl:string;
     jumlahPenumpang:number;
-    //penumpang : Penumpang[] = [];
     Booking : Booking[];
     nama_penumpang: any[] = [];
     nomor_identitas: any[] = [];
@@ -32,18 +31,18 @@ export class RegisterComponent implements OnInit {
 
 
 
-        }
-        ngOnInit() {
-                  var tenMinutes = 60 * 10,
-              display = document.querySelector('#time');
-          this.startTimer(tenMinutes, display);
-        }
+    }
+    ngOnInit() {
+        var tenMinutes = 60 * 10,
+        display = document.querySelector('#time');
+        this.startTimer(tenMinutes, display);
+    }
     createRange(number){
-      this.items = [];
-      for(var i = 1; i <= number; i++){
-         this.items.push(i);
-      }
-      return this.items;
+        this.items = [];
+        for(var i = 1; i <= number; i++){
+            this.items.push(i);
+        }
+        return this.items;
     }
 
     register() {
@@ -51,7 +50,7 @@ export class RegisterComponent implements OnInit {
       localStorage.setItem('time',$('#time').text());
 
         this.loading = true;
-
+        this.pemesan.kode_booking = this.Booking.kode_booking;
         for(var i = 0;i < this.nama_penumpang.length;i++)
         {
            this.pen = [];
@@ -62,26 +61,32 @@ export class RegisterComponent implements OnInit {
                .subscribe(
                    data => {
 
+                      if(i == this.jumlahPenumpang)
+                      {
+                    
+                        this.authenticationService.buatDataPemesan(this.pemesan)
+                            .subscribe(
+                                data => {
+
+
+                                       this.router.navigate(['home']);
+
+
+                                },
+                        );
+                      }
                    },
            );
-           
+
            //this.penumpang.push(this.pen);
         }
-        this.pemesan.kode_booking = this.Booking.kode_booking;
+
         /*for(var i = 0 ; i < this.penumpang.length; i++)
         {
 
         }*/
-        this.authenticationService.buatDataPemesan(this.pemesan)
-            .subscribe(
-                data => {
 
 
-                       this.router.navigate(['home']);
-
-
-                },
-        );
 
 
 

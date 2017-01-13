@@ -15,6 +15,7 @@ export class HasilKodeComponent implements OnInit {
     kode_pembayaran : number;
     nama_pemesan : string;
     array_penumpang : penumpang[] = [];
+    info : string;
 
 
     constructor(private userService: UserService) {
@@ -37,6 +38,14 @@ export class HasilKodeComponent implements OnInit {
 
             }
 
+        }
+        if(this.kode_booking == "*********")
+        {
+          this.info = "Anda belum menyelesaikan pembayaran, selesaikan pembayaran untuk mendapatkan Kode Booking";
+        }
+        else
+        {
+          this.info = "Silahkan pakai Kode Booking untuk mencetak tiketnya di stasiun";
         }
     }
 

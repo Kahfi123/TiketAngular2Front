@@ -12,7 +12,7 @@ export class UserService {
     }
 
     getCaraBayar(){
-        return this.http.get('http://127.0.0.1:8000/carapembayaran/').map((response: Response) => response.json());
+        return this.http.get('http://127.0.0.1:8000/carabayar/').map((response: Response) => response.json());
     }
 
 }

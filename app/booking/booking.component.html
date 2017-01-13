@@ -57,7 +57,7 @@
           <td></td>
         </tr>
         <tr>
-          <td colspan = 3><input #female name="gender" type="checkbox"  value="Female" (click)="gender = female.value" /> Dengan ini saya setuju dan memenuhi persyaratan reservasi</td>
+          <td colspan = 3><input #female name="persetujuan" type="checkbox"  value="setuju" (change)="addProp1($event)" /> Dengan ini saya setuju dan memenuhi persyaratan reservasi</td>
         </tr>
         <tr>
           <td colspan = 3><button class = "ph-button ph-btn-blue" (click) = "goToRegister()">Lanjutkan</button></td>
