@@ -12,7 +12,7 @@
     <td>{{layanan.asal.waktu | date: 'medium'}}</td>
     <td>{{layanan.tujuan.waktu | date: 'medium'}}</td>
     <td>Rp {{layanan.harga_tiket}}</td>
-    <td *ngIf="layanan.sisa_kursi >= jumlahPenumpang"><button class = "ph-button ph-btn-blue" (click) = "gotoBooking(train)">Pesan</button></td>
+    <td *ngIf="layanan.sisa_kursi >= jumlahPenumpang"><button class = "ph-button ph-btn-blue" (click) = "gotoBooking(layanan)">Pesan</button></td>
     <td *ngIf="layanan.sisa_kursi < jumlahPenumpang">Habis</td>
   </tr>
 </table>

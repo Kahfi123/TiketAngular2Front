@@ -23,17 +23,9 @@ export class DaftarKeretaComponent implements OnInit {
     ngOnInit() {
 
     }
-    gotoBooking(train: Train): void {
+    gotoBooking(selectedLayanan: LayananKereta): void {
 
-      localStorage.setItem('nama_kereta', train.nama_kereta);
-      localStorage.setItem('id_kereta',train.id_kereta);
-      localStorage.setItem('stasiun_asal', train.stasiun_asal);
-      localStorage.setItem('stasiun_tujuan',train.stasiun_tujuan);
-      localStorage.setItem('berangkat', train.berangkat);
-      localStorage.setItem('datang',train.datang);
-      localStorage.setItem('harga_tiket',train.harga);
-      localStorage.setItem('id_layanan_kereta',train.id_layanan_kereta);
-
+      localStorage.setItem('selected_layanan', JSON.stringify(selectedLayanan));
       this.router.navigate(['booking']);
 
     }

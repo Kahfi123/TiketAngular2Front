@@ -35,7 +35,7 @@ export class AuthenticationService {
         return this.http.get('http://localhost:8000/layanan/'+tahun+'/'+bulan+'/'+hari+'/'+departure+'/'+arrive+'/')
             .map((response: Response) => {
                 let trains = response.json();
-                
+
                 if (trains) {
 
                     this._layananKereta = trains;
@@ -43,11 +43,11 @@ export class AuthenticationService {
                 }
             });
     }
-    buatKodeBooking(jumlahPenumpang : string, id_layanan_kereta: string)
+    buatKodeBooking(jumlahPenumpang : string, id_layanan_kereta: number)
     {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:8000/booking/', JSON.stringify({ 'jumlah_penumpang': jumlahPenumpang,'id_layanan_kereta':id_layanan_kereta}),options)
+        return this.http.post('http://localhost:8000/booking/', JSON.stringify({ 'jumlah_penumpang': jumlahPenumpang,'layanan_kereta':id_layanan_kereta}),options)
         .map((response: Response) => {
             let kode_booking = response.json();
 
@@ -65,7 +65,8 @@ export class AuthenticationService {
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:8000/penumpang/', JSON.stringify({ 'nomor_identitas':penumpang.nomor_identitas,'nama_penumpang':penumpang.nama_penumpang,'kode_booking':penumpang.kode_booking }),options)
+        let kode_booking  = parseInt(JSON.parse(localStorage.getItem('kode_booking')).kode_booking);
+        return this.http.post('http://localhost:8000/booking/'+kode_booking+'/penumpang', JSON.stringify({ 'nomor_identitas':penumpang.nomor_identitas,'nama_penumpang':penumpang.nama_penumpang}),options)
         .map((response: Response) => {
             let penumpang = response.json();
             let array_penumpang: any[] = JSON.parse(localStorage.getItem('penumpang')) || [];
