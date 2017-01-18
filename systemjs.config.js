@@ -62,7 +62,8 @@
       rxjs: {
         defaultExtension: 'js'
       }
-    }
+    },
+    baseURL: '/TiketAngular2Front/'
   });
 
   if (!global.noBootstrap) { bootstrap(); }
