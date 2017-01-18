@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RangkaianPerjalanan,Train } from '../_models/index';
+import { RangkaianPerjalanan,Train,LayananKereta } from '../_models/index';
 import { UserService,AuthenticationService } from '../_services/index';
 import { LOCALE_ID } from '@angular/core';
 
@@ -11,48 +11,13 @@ import { LOCALE_ID } from '@angular/core';
 })
 
 export class DaftarKeretaComponent implements OnInit {
-
-    rangkaianPerjalanan : RangkaianPerjalanan[] = [];
-    trains : Train[] = [];
-    train : Train[] = [];
-    jumlahPenumpang:number;
-    i:number ;
+    jumlahPenumpang : number;
+    layananKereta : LayananKereta [];
 
 
-    constructor(private userService: UserService,private router: Router) {
-        this.rangkaianPerjalanan = (JSON.parse(localStorage.getItem('currentTrains')));
-        this.i = 0;
-
-        for (var rangkaian of this.rangkaianPerjalanan) {
-
-            if(this.i%2 == 0)
-            {
-
-              this.train.berangkat = rangkaian.waktu;
-              this.train.stasiun_asal = rangkaian.id_stasiun.nama_stasiun;
-
-            }
-            else
-            {
-              this.train.datang = rangkaian.waktu;
-              this.train.stasiun_tujuan = rangkaian.id_stasiun.nama_stasiun;
-              this.train.id_layanan_kereta = rangkaian.id_layanan_kereta.id_layanan_kereta;
-              this.train.id_kereta = rangkaian.id_layanan_kereta.id_kereta.id_kereta;
-              this.train.nama_kereta = rangkaian.id_layanan_kereta.id_kereta.nama_kereta;
-              this.train.kapasitas = rangkaian.id_layanan_kereta.kapasitas;
-              this.train.harga = rangkaian.id_layanan_kereta.harga_tiket;
-
-              this.trains.push(this.train);
-              this.train = [];
-
-            }
-
-
-            this.i++;
-        }
-
-
+    constructor(private userService: UserService,private authService: AuthenticationService, private router: Router) {
         this.jumlahPenumpang = JSON.parse(localStorage.getItem('jumlahPenumpang'));
+        this.layananKereta = authService._layananKereta;
     }
 
     ngOnInit() {

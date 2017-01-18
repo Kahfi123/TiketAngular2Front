@@ -5,5 +5,4 @@ export class RangkaianPerjalanan {
   id_stasiun   : Stasiun;
   jenis_perjalanan : string;
   waktu   : date;
-
 }

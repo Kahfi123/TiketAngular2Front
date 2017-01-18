@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Penumpang,Booking,Pemesan,CaraBooking } from '../_models/index';
+import { Penumpang,Booking,Pemesan,CaraBooking,LayananKereta } from '../_models/index';
 import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthenticationService {
+    _layananKereta : LayananKereta [];
     constructor(private http: Http) { }
 
     cekKodeBooking(kode_pembayaran: number) {
@@ -31,15 +32,13 @@ export class AuthenticationService {
     tampilkanKereta(tahun: number,hari: number, bulan: number,departure: string,arrive: string,slot: number)
     {
 
-        return this.http.get('http://localhost:8000/perjalanan/'+tahun+'/'+bulan+'/'+hari+'/'+departure+'/'+arrive+'/'+slot+'/')
-
+        return this.http.get('http://localhost:8000/layanan/'+tahun+'/'+bulan+'/'+hari+'/'+departure+'/'+arrive+'/')
             .map((response: Response) => {
                 let trains = response.json();
-
-
+                
                 if (trains) {
 
-                    localStorage.setItem('currentTrains', JSON.stringify(trains));
+                    this._layananKereta = trains;
 
                 }
             });

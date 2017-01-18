@@ -11,3 +11,4 @@ export * from './pembayaran';
 export * from './pemesan';
 export * from './rangkaianPerjalanan';
 export * from './stasiun';
+export * from './perjalanan';

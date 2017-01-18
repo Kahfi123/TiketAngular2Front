@@ -1,4 +1,4 @@
 export class Kereta{
-  idKereta: number;
-  namaKereta: string;
+  id_kereta: number;
+  nama_kereta: string;
 }
