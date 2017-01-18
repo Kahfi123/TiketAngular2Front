@@ -29,8 +29,6 @@ export class RegisterComponent implements OnInit {
         this.jumlahPenumpang = JSON.parse(localStorage.getItem('jumlahPenumpang'));
         this.Booking = JSON.parse(localStorage.getItem('kode_booking'));
 
-        window.alert(JSON.parse(localStorage.getItem('kode_booking')).kode_booking);
-
     }
     ngOnInit() {
         var tenMinutes = 60 * 10,
